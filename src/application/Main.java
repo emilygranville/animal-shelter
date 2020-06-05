@@ -29,7 +29,6 @@ public class Main {
 		    String type = rs.getString("type");
 		    int age = rs.getInt("age");
 		    String breed = rs.getString("breed");
-		    String description = rs.getString("description");
 		
 		    System.out.println(" --> " + name + ", which is a " + type + " age " + age + " of breed " + breed);
 	    }

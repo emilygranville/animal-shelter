@@ -1,0 +1,22 @@
+CREATE DATABASE `shelter`;
+USE `shelter`;
+
+CREATE TABLE IF NOT EXISTS `pets` (
+	`pet_id` int(10) NOT NULL AUTO_INCREMENT,
+	`name` varchar(20) NOT NULL,
+	`type` varchar(50) NOT NULL,
+	`age` int(2) NOT NULL,
+	`breed` varchar(50) NOT NULL,
+	`description` varchar(150) NOT NULL,
+	`shots` BOOLEAN NOT NULL,
+	`good_with_kids` BOOLEAN NOT NULL,
+	`image` longblob,
+	`interest` BOOLEAN NOT NULL,
+	`interest_name` varchar(100),
+	`interest_phone_num` int(10),
+	`interest_email_address` varchar(100), 
+	PRIMARY KEY(`pet_id`)
+) ENGINE = InnoDB DEFAULT CHARSET = latin1; 	
+
+
+INSERT INTO `pets` (`name`, `type`, `age`, `breed`, `description`, `shots`, `good_with_kids`, `interest`) VALUES ("MewMew", "cat", 3, "bombay", "adorable", true, true, false);
