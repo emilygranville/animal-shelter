@@ -18,8 +18,7 @@ public class Pet {
 	
 	private int lastID = -1;
 	
-	public Pet(String type, String name, int age, String breed, String description, boolean shots,
-			String medicalIssues, boolean goodWithKids/*, String image*/) {
+	public Pet(String name, String type, int age, String breed, String description, boolean shots, boolean goodWithKids/*, String image*/) {
 		super();
 		this.petID = lastID++;
 		this.type = type;
@@ -28,12 +27,59 @@ public class Pet {
 		this.breed = breed;
 		this.description = description;
 		this.shots = shots;
-		this.medicalIssues = medicalIssues;
 		this.goodWithKids = goodWithKids;
 		this.interestForAdoption = false;
 		this.interestName = null;
 		this.interestPhoneNumber = 0;
 		this.interestEmailAddress = null;
+	}
+	
+	public void setShots(boolean shots) {
+		this.shots = shots;
+	}
+
+	public void setPetID(int petID) {
+		this.petID = petID;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public void setBreed(String breed) {
+		this.breed = breed;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setMedicalIssues(String medicalIssues) {
+		this.medicalIssues = medicalIssues;
+	}
+
+	public void setGoodWithKids(boolean goodWithKids) {
+		this.goodWithKids = goodWithKids;
+	}
+
+	public void setInterestName(String interestName) {
+		this.interestName = interestName;
+	}
+
+	public void setInterestPhoneNumber(int interestPhoneNumber) {
+		this.interestPhoneNumber = interestPhoneNumber;
+	}
+
+	public void setInterestEmailAddress(String interestEmailAddress) {
+		this.interestEmailAddress = interestEmailAddress;
 	}
 
 	public int getPetID() {
@@ -74,6 +120,10 @@ public class Pet {
 
 	public boolean hasInterestForAdoption() {
 		return interestForAdoption;
+	}
+	
+	public void setInterest(boolean interest) {
+		this.interestForAdoption = interest;
 	}
 
 	public String getInterestName() {
