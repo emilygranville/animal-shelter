@@ -38,13 +38,13 @@ public class Controller extends HttpServlet {
   	
 		try {
 			switch (action) {
-				case "/add":
-				case "/edit":
-					showEditForm(request, response); break;
-				case "/insert":
-					insertPet(request, response); break;
-				case "/update":
-					updatePet(request, response); break;
+//				case "/add":
+//				case "/edit":
+//					showEditForm(request, response); break;
+//				case "/insert":
+//					insertPet(request, response); break;
+//				case "/update":
+//					updatePet(request, response); break;
 				default:
 					viewPets(request, response); break;
 			}   
