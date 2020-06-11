@@ -41,12 +41,12 @@ public class PetDAO {
 	        boolean shots = rs.getBoolean("shots");
 	        boolean good_with_kids = rs.getBoolean("good_with_kids");
 	        boolean interest = rs.getBoolean("interest");
-	        int interest_phone_num = rs.getInt("interest_phone_num");
-	        String interest_name = rs.getString("interest_name");
-	        String interest_email_address = rs.getString("interest_email_address");
+	        String interestName = rs.getString("interest_name");
+	        int interestPhoneNum = rs.getInt("interest_phone_num");
+	        String interestEmail = rs.getString("interest_email_address");
 	        
 	        pet = new Pet(id, name, type, age, breed, description, shots, good_with_kids, interest,
-	          interest_phone_num, interest_name, interest_email_address);
+	  	      interestName, interestPhoneNum, interestEmail);
 	      }
 	      
 	      rs.close();
@@ -59,7 +59,7 @@ public class PetDAO {
 	public List<Pet> getPets() throws SQLException {
 		final String sql = "SELECT * FROM pets ORDER BY pet_id ASC";
 		
-		List<Pet> pets = new ArrayList<>();
+		List<Pet> pets = new ArrayList<Pet>();
 	    Connection conn = getConnection();
 	    Statement stmt = conn.createStatement();
 	    ResultSet rs = stmt.executeQuery(sql);
@@ -74,12 +74,12 @@ public class PetDAO {
 	        boolean shots = rs.getBoolean("shots");
 	        boolean good_with_kids = rs.getBoolean("good_with_kids");
 	        boolean interest = rs.getBoolean("interest");
-	        int interest_phone_num = rs.getInt("interest_phone_num");
-	        String interest_name = rs.getString("interest_name");
-	        String interest_email_address = rs.getString("interest_email_address");
+	        String interestName = rs.getString("interest_name");
+	        int interestPhoneNum = rs.getInt("interest_phone_num");
+	        String interestEmail = rs.getString("interest_email_address");
 	        
 	        pets.add(new Pet(id, name, type, age, breed, description, shots, good_with_kids, interest,
-	  	      interest_phone_num, interest_name, interest_email_address));
+	          interestName, interestPhoneNum, interestEmail));
 	      }
 	      
 	      rs.close();
@@ -91,7 +91,7 @@ public class PetDAO {
 	
 	public boolean insertPet(Pet pet) throws SQLException {
 		final String sql = "INSERT INTO pets (name, type, age, breed, description, shots, " +
-		  "good_with_kids, interest, interest_phone_num, interest_name, interest_email_address) " +
+		  "good_with_kids, interest, interest_name, interest_phone_num, interest_email_address) " +
 		  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		    
 	    Connection conn = getConnection();
@@ -104,10 +104,10 @@ public class PetDAO {
 	    pstmt.setString(5, pet.getDescription());
 	    pstmt.setBoolean(6, pet.hasShots());
 	    pstmt.setBoolean(7, pet.isGoodWithKids());
-	    pstmt.setBoolean(8, pet.hasInterestForAdoption());
-	    pstmt.setInt(9, pet.getInterestPhoneNumber());
-	    pstmt.setString(10, pet.getInterestName());
-	    pstmt.setString(11, pet.getInterestEmailAddress());
+	    pstmt.setBoolean(8, pet.hasInterest());
+	    pstmt.setString(9, pet.getInterestName());
+	    pstmt.setInt(10, pet.getInterestPhoneNum());
+	    pstmt.setString(11, pet.getInterestEmail());
 	    int affected = pstmt.executeUpdate();
 	    
 	    pstmt.close();
@@ -118,8 +118,8 @@ public class PetDAO {
 	
 	public boolean updatePet(Pet pet) throws SQLException {
 		final String sql = "UPDATE pets SET name = ?, type = ?, age = ?, breed = ?, " +
-		  "description = ?, shots = ?, good_with_kids = ?, interest = ?, interest_phone_num = ?, " +
-		  "interest_name = ?, interest_email_address = ? " +
+		  "description = ?, shots = ?, good_with_kids = ?, interest = ?, interest_name = ?, " +
+		  "interest_phone_num = ?, interest_email_address = ? " +
 		  "WHERE book_id = ?";
 		
 		Connection conn = getConnection();
@@ -131,10 +131,10 @@ public class PetDAO {
 	    pstmt.setString(5, pet.getDescription());
 	    pstmt.setBoolean(6, pet.hasShots());
 	    pstmt.setBoolean(7, pet.isGoodWithKids());
-	    pstmt.setBoolean(8, pet.hasInterestForAdoption());
-	    pstmt.setInt(9, pet.getInterestPhoneNumber());
-	    pstmt.setString(10, pet.getInterestName());
-	    pstmt.setString(11, pet.getInterestEmailAddress());
+	    pstmt.setBoolean(8, pet.hasInterest());
+	    pstmt.setString(9, pet.getInterestName());
+	    pstmt.setInt(10, pet.getInterestPhoneNum());
+	    pstmt.setString(11, pet.getInterestEmail());
 	    int affected = pstmt.executeUpdate();
 	    
 	    pstmt.close();

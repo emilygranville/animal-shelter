@@ -1,26 +1,23 @@
 package shelter;
 
 public class Pet {
-	private int petID;
+	private int id;
 	private String type;
 	private String name;
 	private int age;
 	private String breed;
 	private String description;
 	private boolean shots;
-	private String medicalIssues;
 	private boolean goodWithKids;
-	//private String image;
-	private boolean interestForAdoption;
+	private boolean interest;
 	private String interestName;
-	private int interestPhoneNumber;
-	private String interestEmailAddress;
-	
-	private int lastID = -1;
-	
-	public Pet(String name, String type, int age, String breed, String description, boolean shots, boolean goodWithKids/*, String image*/) {
+	private int interestPhoneNum;
+	private String interestEmail;
+		
+	public Pet(int id, String name, String type, int age, String breed, String description, boolean shots, boolean goodWithKids) {
 		super();
-		this.petID = lastID++;
+		
+		this.id = id;
 		this.type = type;
 		this.name = name;
 		this.age = age;
@@ -28,22 +25,32 @@ public class Pet {
 		this.description = description;
 		this.shots = shots;
 		this.goodWithKids = goodWithKids;
-		this.interestForAdoption = false;
+		this.interest = false;
 		this.interestName = null;
-		this.interestPhoneNumber = 0;
-		this.interestEmailAddress = null;
+		this.interestPhoneNum = 0;
+		this.interestEmail = null;
+	}
+	
+	public Pet(int id, String name, String type, int age, String breed, String description, boolean shots, boolean goodWithKids, 
+	  boolean interest, String interestName, int interestPhoneNum, String interestEmail) {
+		super();
+		
+		this.id = id;
+		this.type = type;
+		this.name = name;
+		this.age = age;
+		this.breed = breed;
+		this.description = description;
+		this.shots = shots;
+		this.goodWithKids = goodWithKids;
+		this.interest = interest;
+		this.interestName = interestName;
+		this.interestPhoneNum = interestPhoneNum;
+		this.interestEmail = interestEmail;
 	}
 	
 	public void setShots(boolean shots) {
 		this.shots = shots;
-	}
-
-	public void setPetID(int petID) {
-		this.petID = petID;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public void setName(String name) {
@@ -54,16 +61,8 @@ public class Pet {
 		this.age = age;
 	}
 
-	public void setBreed(String breed) {
-		this.breed = breed;
-	}
-
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public void setMedicalIssues(String medicalIssues) {
-		this.medicalIssues = medicalIssues;
 	}
 
 	public void setGoodWithKids(boolean goodWithKids) {
@@ -74,16 +73,16 @@ public class Pet {
 		this.interestName = interestName;
 	}
 
-	public void setInterestPhoneNumber(int interestPhoneNumber) {
-		this.interestPhoneNumber = interestPhoneNumber;
+	public void setinterestPhoneNum(int interestPhoneNum) {
+		this.interestPhoneNum = interestPhoneNum;
 	}
 
-	public void setInterestEmailAddress(String interestEmailAddress) {
-		this.interestEmailAddress = interestEmailAddress;
+	public void setInterestEmail(String interestEmail) {
+		this.interestEmail = interestEmail;
 	}
 
-	public int getPetID() {
-		return petID;
+	public int getId() {
+		return id;
 	}
 
 	public String getType() {
@@ -110,38 +109,36 @@ public class Pet {
 		return shots;
 	}
 
-	public String getMedicalIssues() {
-		return medicalIssues;
-	}
-
 	public boolean isGoodWithKids() {
 		return goodWithKids;
 	}
 
-	public boolean hasInterestForAdoption() {
-		return interestForAdoption;
+	public boolean hasInterest() {
+		return interest;
 	}
 	
 	public void setInterest(boolean interest) {
-		this.interestForAdoption = interest;
+		this.interest = interest;
 	}
 
 	public String getInterestName() {
 		return interestName;
 	}
 
-	public int getInterestPhoneNumber() {
-		return interestPhoneNumber;
+	public int getInterestPhoneNum() {
+		return interestPhoneNum;
 	}
 
-	public String getInterestEmailAddress() {
-		return interestEmailAddress;
+	public String getInterestEmail() {
+		return interestEmail;
 	}
 	
-	public void adoptionRequest(String name, int phoneNumber, String emailAddress) {
-		this.interestForAdoption = true;
-		this.interestName = name;
-		this.interestPhoneNumber = phoneNumber;
-		this.interestEmailAddress = emailAddress;
+	public void adoptionRequest(String name, int PhoneNum, String email) {
+		if (!interest) {
+			this.interest = true;
+			this.interestName = name;
+			this.interestPhoneNum = PhoneNum;
+			this.interestEmail = email;	
+		}
 	}
 }
