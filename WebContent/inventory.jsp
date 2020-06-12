@@ -33,9 +33,9 @@
 		            <td><c:out value="${pet.age}" /></td>
 		            <td><c:out value="${pet.breed}" /></td>
 		            <td><c:out value="${pet.description}" /></td>
-		            <td><c:out value="${pet.shots}" /></td>
+		            <td><c:out value="${pet.hasShots()}" /></td>
 		            <td><c:out value="${pet.goodWithKids}" /></td>
-		            <td><c:out value="${pet.interest}" /></td>
+		            <td><c:out value="${pet.hasInterest()}" /></td>
 				</tr>
 			</c:forEach>
 		</table>
