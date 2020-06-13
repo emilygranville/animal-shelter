@@ -56,21 +56,25 @@ public class Controller extends HttpServlet {
 	private void insertPet(HttpServletRequest request, HttpServletResponse response)
       throws SQLException, ServletException, IOException {
 	  
-	    int petID = Integer.parseInt(request.getParameter("pet_id"));
 	    String name = request.getParameter("name");
 	    String type = request.getParameter("type");
 	    int age = Integer.parseInt(request.getParameter("age"));
 	    String breed = request.getParameter("breed");
 	    String description = request.getParameter("description");
 	    boolean shots = Boolean.parseBoolean(request.getParameter("shots"));
-	    boolean goodWithKids = Boolean.parseBoolean(request.getParameter("good_with_kids"));
+	    boolean goodWithKids = Boolean.parseBoolean(request.getParameter("goodWithKids"));
 	    boolean interest = Boolean.parseBoolean(request.getParameter("interest"));
-	    String interestName = request.getParameter("interest_name");
-	    int interestPhoneNum = Integer.parseInt(request.getParameter("interest_phone_number"));
-	    String interestEmail = request.getParameter("interest_email_address");
-	  	
-	    dao.insertPet(name, type, age, breed, description, shots, goodWithKids, interest, 
-	    		interestName, interestPhoneNum, interestEmail);
+	    if (interest) {
+	    	String interestName = request.getParameter("interestName");
+		    int interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum"));
+		    String interestEmail = request.getParameter("interestEmail");
+		  	
+		    dao.insertPet(name, type, age, breed, description, shots, goodWithKids, interest, 
+		      interestName, interestPhoneNum, interestEmail);
+	    } else {
+	    	dao.insertPet(name, type, age, breed, description, shots, goodWithKids, interest);
+	    }
+	    
 	    response.sendRedirect(request.getContextPath() + "/");
 	}
   
@@ -91,16 +95,16 @@ public class Controller extends HttpServlet {
 		  : request.getParameter("submit").toLowerCase();
 	  
 		  
-		final int id = Integer.parseInt(request.getParameter("id"));
+		final int id = Integer.parseInt(request.getParameter("id").trim());
 			
 		Pet pet = dao.getPet(id);
 		switch (action) {
-			case "adoption_request":
-				String interestName = "";
-		    	int interestPhoneNum = 0;
-		    	String interestEmail = "";
-		    	pet.adoptionRequest(interestName, interestPhoneNum, interestEmail);
-		    	break;
+//			case "adoption_request":
+//				String interestName = "";
+//		    	int interestPhoneNum = 0;
+//		    	String interestEmail = "";
+//		    	pet.adoptionRequest(interestName, interestPhoneNum, interestEmail);
+//		    	break;
 		    case "save":
 		    	String name = request.getParameter("name");
 				String type = request.getParameter("type");
@@ -108,14 +112,16 @@ public class Controller extends HttpServlet {
 				String breed = request.getParameter("breed");
 				String description = request.getParameter("description");
 				boolean shots = Boolean.parseBoolean(request.getParameter("shots"));
-				boolean good_with_kids = Boolean.parseBoolean(request.getParameter("good_with_kids"));
+				boolean good_with_kids = Boolean.parseBoolean(request.getParameter("goodWithKids"));
 				boolean interest = Boolean.parseBoolean(request.getParameter("interest"));
-				interestName = request.getParameter("interest_name");
-				interestPhoneNum = Integer.parseInt(request.getParameter("interest_phone_number"));
-				interestEmail = request.getParameter("interest_email_address");
+				String interestName = request.getParameter("interestName");
+				int interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum"));
+				String interestEmail = request.getParameter("interestEmail");
 								
 				pet.setName(name);
+				pet.setType(type);
 				pet.setAge(age);
+				pet.setBreed(breed);
 				pet.setDescription(description);
 				pet.setShots(shots);
 				pet.setGoodWithKids(good_with_kids);
@@ -126,9 +132,9 @@ public class Controller extends HttpServlet {
 		      
 				break;
 		    case "delete":
-		    	//deletePet(id, request, response);
+		    	deletePet(id, request, response);
 		    	return;
-		    }
+		}
 
 		    dao.updatePet(pet);
 		    response.sendRedirect(request.getContextPath() + "/");
@@ -143,12 +149,12 @@ public class Controller extends HttpServlet {
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
 	  throws SQLException, ServletException, IOException {
 		try {
-			final int id = Integer.parseInt(request.getParameter("id"));
+			final int id = Integer.parseInt(request.getParameter("id").trim());
 		    
 		    Pet pet = dao.getPet(id);
 		    request.setAttribute("pet", pet);
 		  } finally {
-		    RequestDispatcher dispatcher = request.getRequestDispatcher("bookform.jsp");
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("petform.jsp");
 		    dispatcher.forward(request, response);
 		  }
 	}

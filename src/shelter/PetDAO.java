@@ -146,6 +146,32 @@ public class PetDAO {
 	    return affected == 1;
 	}
 	
+	public boolean insertPet(String name, String type, int age, String breed,
+	  String description, boolean shots, boolean goodWithKids, boolean interest)
+	  throws SQLException {
+		final String sql = "INSERT INTO pets (name, type, age, breed, description, shots, " +
+		  "good_with_kids, interest) " +
+		  "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		    
+	    Connection conn = getConnection();
+	    PreparedStatement pstmt = conn.prepareStatement(sql);
+	    
+	    pstmt.setString(1, name);
+	    pstmt.setString(2, type);
+	    pstmt.setInt(3, age);
+	    pstmt.setString(4, breed);
+	    pstmt.setString(5, description);
+	    pstmt.setBoolean(6, shots);
+	    pstmt.setBoolean(7, goodWithKids);
+	    pstmt.setBoolean(8, interest);
+	    int affected = pstmt.executeUpdate();
+	    
+	    pstmt.close();
+	    conn.close();
+	    
+	    return affected == 1;
+	}
+	
 	public boolean updatePet(Pet pet) throws SQLException {
 		final String sql = "UPDATE pets SET name = ?, type = ?, age = ?, breed = ?, " +
 		  "description = ?, shots = ?, good_with_kids = ?, interest = ?, interest_name = ?, " +

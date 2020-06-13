@@ -56,15 +56,15 @@
 					<c:if test="${pet.hasInterest()}">
 						<label>
 							Interest Name
-							<input type="text" name="interest" value="<c:out value="${pet.interestName}" />" />
+							<input type="text" name="interestName" value="<c:out value="${pet.interestName}" />" />
 						</label>
 						<label>
 							Interest Phone Number
-							<input type="text" name="interest" value="<c:out value="${pet.interestPhoneNum}" />" />
+							<input type="text" name="interestPhoneNum" value="<c:out value="${pet.interestPhoneNum}" />" />
 						</label>
 						<label>
 							Interest Email
-							<input type="text" name="interest" value="<c:out value="${pet.interestEmail}" />" />
+							<input type="text" name="interestEmail" value="<c:out value="${pet.interestEmail}" />" />
 						</label>
 					</c:if>
 					<input type="submit" value="Save" name="submit" />
@@ -98,7 +98,13 @@
 					</label>
 					<label>
 						Shots
-						<input type="text" name="shots"/>
+						<select name="shots">
+						  <c:forEach begin="1" end="15" varStatus="loop">
+						    <option value="${loop.index}" <c:if test="${book.copies == loop.index}">selected</c:if>>
+						      ${loop.index}
+						    </option>
+						  </c:forEach>
+						</select>
 					</label>
 					<label>
 						Kid Friendly
@@ -108,6 +114,20 @@
 						Interest
 						<input type="text" name="interest"/>
 					</label>
+					<c:if test="${pet.hasInterest()}">
+						<label>
+							Interest Name
+							<input type="text" name="interestName"/>
+						</label>
+						<label>
+							Interest Phone Number
+							<input type="text" name="interestPhoneNum"/>
+						</label>
+						<label>
+							Interest Email
+							<input type="text" name="interestEmail"/>
+						</label>
+					</c:if>
 					<input type="submit" value="Add" name="submit" />
 				</form>
 			</c:if>

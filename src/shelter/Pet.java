@@ -56,9 +56,17 @@ public class Pet {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+	
+	public void setBreed(String breed) {
+		this.breed = breed;
 	}
 
 	public void setDescription(String description) {
@@ -133,11 +141,11 @@ public class Pet {
 		return interestEmail;
 	}
 	
-	public void adoptionRequest(String name, int PhoneNum, String email) {
+	public void adoptionRequest(String name, int phoneNum, String email) {
 		if (!interest) {
 			this.interest = true;
 			this.interestName = name;
-			this.interestPhoneNum = PhoneNum;
+			this.interestPhoneNum = phoneNum;
 			this.interestEmail = email;	
 		}
 	}
