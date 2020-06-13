@@ -38,13 +38,13 @@ public class Controller extends HttpServlet {
   	
 		try {
 			switch (action) {
-//				case "/add":
-//				case "/edit":
-//					showEditForm(request, response); break;
-//				case "/insert":
-//					insertPet(request, response); break;
-//				case "/update":
-//					updatePet(request, response); break;
+				case "/add":
+				case "/edit":
+					showEditForm(request, response); break;
+				case "/insert":
+					insertPet(request, response); break;
+				case "/update":
+					updatePet(request, response); break;
 				default:
 					viewPets(request, response); break;
 			}   
@@ -53,26 +53,26 @@ public class Controller extends HttpServlet {
 		}
 	}
 
-//	private void insertPet(HttpServletRequest request, HttpServletResponse response)
-//      throws SQLException, ServletException, IOException {
-//	  
-//	    int petID = Integer.parseInt(request.getParameter("pet_id"));
-//	    String name = request.getParameter("name");
-//	    String type = request.getParameter("type");
-//	    int age = Integer.parseInt(request.getParameter("age"));
-//	    String breed = request.getParameter("breed");
-//	    String description = request.getParameter("description");
-//	    boolean shots = Boolean.parseBoolean(request.getParameter("shots"));
-//	    boolean good_with_kids = Boolean.parseBoolean(request.getParameter("good_with_kids"));
-//	    boolean interest = Boolean.parseBoolean(request.getParameter("interest"));
-//	    int interest_phone_number = Integer.parseInt(request.getParameter("interest_phone_number"));
-//	    String interest_name = request.getParameter("interest_name");
-//	    String interest_email_address = request.getParameter("interest_email_address");
-//	  	
-//	    dao.insertPet(petID, name, type, age, breed, description, shots, good_with_kids, interest, 
-//	      interest_name, interest_phone_number, interest_email_address);
-//	    response.sendRedirect(request.getContextPath() + "/");
-//	}
+	private void insertPet(HttpServletRequest request, HttpServletResponse response)
+      throws SQLException, ServletException, IOException {
+	  
+	    int petID = Integer.parseInt(request.getParameter("pet_id"));
+	    String name = request.getParameter("name");
+	    String type = request.getParameter("type");
+	    int age = Integer.parseInt(request.getParameter("age"));
+	    String breed = request.getParameter("breed");
+	    String description = request.getParameter("description");
+	    boolean shots = Boolean.parseBoolean(request.getParameter("shots"));
+	    boolean goodWithKids = Boolean.parseBoolean(request.getParameter("good_with_kids"));
+	    boolean interest = Boolean.parseBoolean(request.getParameter("interest"));
+	    String interestName = request.getParameter("interest_name");
+	    int interestPhoneNum = Integer.parseInt(request.getParameter("interest_phone_number"));
+	    String interestEmail = request.getParameter("interest_email_address");
+	  	
+	    dao.insertPet(name, type, age, breed, description, shots, goodWithKids, interest, 
+	    		interestName, interestPhoneNum, interestEmail);
+	    response.sendRedirect(request.getContextPath() + "/");
+	}
   
 	private void viewPets(HttpServletRequest request, HttpServletResponse response)
 	  throws SQLException, ServletException, IOException {
@@ -83,75 +83,75 @@ public class Controller extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
  
-//	private void updatePet(HttpServletRequest request, HttpServletResponse response)
-//	  throws SQLException, ServletException, IOException {
-//		
-//		final String action = request.getParameter("action") != null
-//		  ? request.getParameter("action")
-//		  : request.getParameter("submit").toLowerCase();
-//	  
-//		  
-//		final int id = Integer.parseInt(request.getParameter("id"));
-//			
-//		Pet pet = dao.getPet(id);
-//		switch (action) {
-//			case "adoption_request":
-//				String interestName = "";
-//		    	int interestPhoneNumber = 0;
-//		    	String interestEmailAddress = "";
-//		    	pet.adoptionRequest(interestName, interestPhoneNumber, interestEmailAddress);
-//		    	break;
-//		    case "save":
-//		    	String name = request.getParameter("name");
-//				String type = request.getParameter("type");
-//				int age = Integer.parseInt(request.getParameter("age"));
-//				String breed = request.getParameter("breed");
-//				String description = request.getParameter("description");
-//				boolean shots = Boolean.parseBoolean(request.getParameter("shots"));
-//				boolean good_with_kids = Boolean.parseBoolean(request.getParameter("good_with_kids"));
-//				boolean interest = Boolean.parseBoolean(request.getParameter("interest"));
-//				int interest_phone_number = Integer.parseInt(request.getParameter("interest_phone_number"));
-//				String interest_name = request.getParameter("interest_name");
-//				String interest_email_address = request.getParameter("interest_email_address");
-//								
-//				pet.setName(name);
-//				pet.setAge(age);
-//				pet.setDescription(description);
-//				pet.setShots(shots);
-//				pet.setGoodWithKids(good_with_kids);
-//				pet.setInterest(interest);
-//				pet.setInterestPhoneNumber(interestPhoneNumber);
-//				pet.setInterestName(interestName);
-//				pet.setInterestEmailAddress(interestEmailAddress);
-//		      
-//				break;
-//		    case "delete":
-//		    	deletePet(id, request, response);
-//		    	return;
-//		    }
-//
-//		    dao.updatePet(pet);
-//		    response.sendRedirect(request.getContextPath() + "/");
-//	}
+	private void updatePet(HttpServletRequest request, HttpServletResponse response)
+	  throws SQLException, ServletException, IOException {
+		
+		final String action = request.getParameter("action") != null
+		  ? request.getParameter("action")
+		  : request.getParameter("submit").toLowerCase();
+	  
+		  
+		final int id = Integer.parseInt(request.getParameter("id"));
+			
+		Pet pet = dao.getPet(id);
+		switch (action) {
+			case "adoption_request":
+				String interestName = "";
+		    	int interestPhoneNum = 0;
+		    	String interestEmail = "";
+		    	pet.adoptionRequest(interestName, interestPhoneNum, interestEmail);
+		    	break;
+		    case "save":
+		    	String name = request.getParameter("name");
+				String type = request.getParameter("type");
+				int age = Integer.parseInt(request.getParameter("age"));
+				String breed = request.getParameter("breed");
+				String description = request.getParameter("description");
+				boolean shots = Boolean.parseBoolean(request.getParameter("shots"));
+				boolean good_with_kids = Boolean.parseBoolean(request.getParameter("good_with_kids"));
+				boolean interest = Boolean.parseBoolean(request.getParameter("interest"));
+				interestName = request.getParameter("interest_name");
+				interestPhoneNum = Integer.parseInt(request.getParameter("interest_phone_number"));
+				interestEmail = request.getParameter("interest_email_address");
+								
+				pet.setName(name);
+				pet.setAge(age);
+				pet.setDescription(description);
+				pet.setShots(shots);
+				pet.setGoodWithKids(good_with_kids);
+				pet.setInterest(interest);
+				pet.setInterestPhoneNum(interestPhoneNum);
+				pet.setInterestName(interestName);
+				pet.setInterestEmail(interestEmail);
+		      
+				break;
+		    case "delete":
+		    	//deletePet(id, request, response);
+		    	return;
+		    }
+
+		    dao.updatePet(pet);
+		    response.sendRedirect(request.getContextPath() + "/");
+	}
 		    
-//	private void deletePet(final int id, HttpServletRequest request, HttpServletResponse response)
-//	  throws SQLException, ServletException, IOException {	
-//		dao.deletePet(dao.getPet(id));	
-//		response.sendRedirect(request.getContextPath() + "/");
-//	}
-//  
-//	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-//	  throws SQLException, ServletException, IOException {
-//		try {
-//			final int id = Integer.parseInt(request.getParameter("id"));
-//		    
-//		    Pet pet = dao.getPet(id);
-//		    request.setAttribute("pet", pet);
-//		  } finally {
-//		    RequestDispatcher dispatcher = request.getRequestDispatcher("bookform.jsp");
-//		    dispatcher.forward(request, response);
-//		  }
-//	}
+	private void deletePet(final int id, HttpServletRequest request, HttpServletResponse response)
+	  throws SQLException, ServletException, IOException {	
+		dao.deletePet(dao.getPet(id));	
+		response.sendRedirect(request.getContextPath() + "/");
+	}
+  
+	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+	  throws SQLException, ServletException, IOException {
+		try {
+			final int id = Integer.parseInt(request.getParameter("id"));
+		    
+		    Pet pet = dao.getPet(id);
+		    request.setAttribute("pet", pet);
+		  } finally {
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("bookform.jsp");
+		    dispatcher.forward(request, response);
+		  }
+	}
 }
 
 

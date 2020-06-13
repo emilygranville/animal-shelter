@@ -73,7 +73,7 @@ public class Pet {
 		this.interestName = interestName;
 	}
 
-	public void setinterestPhoneNum(int interestPhoneNum) {
+	public void setInterestPhoneNum(int interestPhoneNum) {
 		this.interestPhoneNum = interestPhoneNum;
 	}
 

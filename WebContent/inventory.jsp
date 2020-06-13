@@ -10,7 +10,8 @@
 	<body>
 	<div>
 		<h1>Inventory Management</h1>
-		<h2><a href="/pets">View All</a></h2>
+		<a href="${pageContext.request.contextPath}/">VIEW ALL</a>
+		<a href="${pageContext.request.contextPath}/add">ADD A PET</a> 
 	</div>
 	<div>
 		<table border="1">
@@ -23,8 +24,9 @@
 				<td>Breed</td>
 				<td>Description</td>
 				<td>Shots</td>
-				<td>Good with Kids</td>
+				<td>Kid Friendly</td>
 				<td>Interest</td>
+				<td>Actions</td>
 			</tr>
 			<c:forEach var="pet" items="${pets}">
 				<tr>
@@ -36,6 +38,14 @@
 		            <td><c:out value="${pet.hasShots()}" /></td>
 		            <td><c:out value="${pet.goodWithKids}" /></td>
 		            <td><c:out value="${pet.hasInterest()}" /></td>
+		            <td>
+        				<a href="${pageContext.request.contextPath}/update?action=rent&id=
+							<c:out value="${pet.id}" />">Add Interest
+						</a>
+       					<a href="${pageContext.request.contextPath}/edit?id=
+	  						<c:out value="${pet.id}" />">Edit
+						</a>
+     				</td>
 				</tr>
 			</c:forEach>
 		</table>
