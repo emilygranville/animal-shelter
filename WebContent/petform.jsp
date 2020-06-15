@@ -43,7 +43,11 @@
 					</label>
 					<label>
 						Shots
-						<input type="text" name="shots" value="<c:out value="${pet.hasShots()}" />" />
+						<select name="shots">
+							<option value="true">true</option>
+							<option value="false">false</option>
+						</select>
+						<!-- <input type="text" name="shots" value="<c:out value="${pet.hasShots()}" />" /> -->
 					</label>
 					<label>
 						Kid Friendly
@@ -99,11 +103,8 @@
 					<label>
 						Shots
 						<select name="shots">
-						  <c:forEach begin="1" end="15" varStatus="loop">
-						    <option value="${loop.index}" <c:if test="${book.copies == loop.index}">selected</c:if>>
-						      ${loop.index}
-						    </option>
-						  </c:forEach>
+							<option value="true">true</option>
+							<option value="false">false</option>
 						</select>
 					</label>
 					<label>

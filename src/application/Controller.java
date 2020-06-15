@@ -58,7 +58,7 @@ public class Controller extends HttpServlet {
 	  
 	    String name = request.getParameter("name");
 	    String type = request.getParameter("type");
-	    int age = Integer.parseInt(request.getParameter("age"));
+	    int age = Integer.parseInt(request.getParameter("age").trim());
 	    String breed = request.getParameter("breed");
 	    String description = request.getParameter("description");
 	    boolean shots = Boolean.parseBoolean(request.getParameter("shots"));
@@ -66,7 +66,7 @@ public class Controller extends HttpServlet {
 	    boolean interest = Boolean.parseBoolean(request.getParameter("interest"));
 	    if (interest) {
 	    	String interestName = request.getParameter("interestName");
-		    int interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum"));
+		    int interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum").trim());
 		    String interestEmail = request.getParameter("interestEmail");
 		  	
 		    dao.insertPet(name, type, age, breed, description, shots, goodWithKids, interest, 
