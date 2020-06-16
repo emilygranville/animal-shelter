@@ -100,20 +100,24 @@ public class Controller extends HttpServlet {
 		switch (action) {
 			case "adoption_request":
 			    final int adoptionId = Integer.parseInt(request.getParameter("id"));
+			    final boolean interest = Boolean.parseBoolean(request.getParameter("interest"));
 			    final String interestName = request.getParameter("interestName");
 			    final int interestPhone = Integer.parseInt(request.getParameter("interestPhoneNum"));
 			    final String interestEmail = request.getParameter("interestEmail");
 	
-			    System.out.println("Adopting a Pet");
-			    System.out.println(adoptionId);
-			    System.out.println(interestName);
-			    System.out.println(interestPhone);
-			    System.out.println(interestEmail);
+//			    System.out.println("Adopting a Pet");
+//			    System.out.println(adoptionId);
+//			    System.out.println(interestName);
+//			    System.out.println(interestPhone);
+//			    System.out.println(interestEmail);
 			    
 			    Pet adoptionPet = dao.getPet(adoptionId);
-			    adoptionPet.adoptionRequest(interestName, interestPhone, interestEmail);
+			    if (!interest) {
+			    	adoptionPet.adoptionRemoval();
+			    } else {
+				    adoptionPet.adoptionRequest(interestName, interestPhone, interestEmail);
+			    }
 			    dao.updatePetInterest(adoptionPet);
-			    
 			    break;
 			case "save":
 			    final int saveId = Integer.parseInt(request.getParameter("id"));
@@ -127,17 +131,18 @@ public class Controller extends HttpServlet {
 			    final boolean hasInterest = Boolean.parseBoolean(request.getParameter("interest"));
 	
 			    System.out.println("Saving a Pet");
-			    System.out.println("id: " + saveId);
+//			    System.out.println("id: " + saveId);
 			    System.out.println("name: " + name);
-			    System.out.println("type: " + type);
-			    System.out.println("age: " + age);
-			    System.out.println("breed: " + breed);
-			    System.out.println("description: " + description);
-			    System.out.println("shots: " + shots);
-			    System.out.println("kidFriendly: " + kidFriendly);
-			    System.out.println("hasInterest: " + hasInterest);
+//			    System.out.println("type: " + type);
+//			    System.out.println("age: " + age);
+//			    System.out.println("breed: " + breed);
+//			    System.out.println("description: " + description);
+//			    System.out.println("shots: " + shots);
+//			    System.out.println("kidFriendly: " + kidFriendly);
+//			    System.out.println("hasInterest: " + hasInterest);
 			    
 			    Pet savePet = dao.getPet(saveId);
+			    System.out.println("interestName: " + savePet.getInterestName());
 			    savePet.setName(name);
 			    savePet.setType(type);
 			    savePet.setAge(age);
