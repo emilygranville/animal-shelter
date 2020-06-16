@@ -98,17 +98,20 @@ public class Controller extends HttpServlet {
 		  ? request.getParameter("action")
 		  : request.getParameter("submit").toLowerCase();
 	  
-		  
-		final int id = Integer.parseInt(request.getParameter("id").trim());
+		final int id = (request.getParameter("id") == null) ?
+			Integer.parseInt((String) request.getAttribute("id")) :
+			Integer.parseInt(request.getParameter("id").trim());
+			
+		System.out.println("should be id" + Integer.parseInt((String) request.getAttribute("id")));
 			
 		Pet pet = dao.getPet(id);
 		switch (action) {
-//			case "adoption_request":
-//				String interestName = "";
-//		    	int interestPhoneNum = 0;
-//		    	String interestEmail = "";
-//		    	pet.adoptionRequest(interestName, interestPhoneNum, interestEmail);
-//		    	break;
+			case "adoption_request":
+				String interestName = request.getParameter("interestName");
+		    	Integer interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum"));
+		    	String interestEmail = request.getParameter("interestEmail");
+		    	pet.adoptionRequest(interestName, interestPhoneNum, interestEmail);
+		    	break;
 		    case "save":
 		    	String name = request.getParameter("name");
 				String type = request.getParameter("type");
@@ -118,9 +121,9 @@ public class Controller extends HttpServlet {
 				boolean shots = Boolean.parseBoolean(request.getParameter("shots"));
 				boolean good_with_kids = Boolean.parseBoolean(request.getParameter("goodWithKids"));
 				boolean interest = Boolean.parseBoolean(request.getParameter("interest"));
-				String interestName = request.getParameter("interestName");
-				int interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum"));
-				String interestEmail = request.getParameter("interestEmail");
+				interestName = request.getParameter("interestName");
+				interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum"));
+				interestEmail = request.getParameter("interestEmail");
 								
 				pet.setName(name);
 				pet.setType(type);
@@ -130,16 +133,16 @@ public class Controller extends HttpServlet {
 				pet.setShots(shots);
 				pet.setGoodWithKids(good_with_kids);
 				pet.setInterest(interest);
-				pet.setInterestPhoneNum(interestPhoneNum);
-				pet.setInterestName(interestName);
-				pet.setInterestEmail(interestEmail);
+				
+				if (interestName != null) pet.setInterestName(interestName);
+				if (interestPhoneNum != null) pet.setInterestPhoneNum(interestPhoneNum);
+				if (interestEmail != null) pet.setInterestEmail(interestEmail);
 		      
 				break;
 		    case "delete":
 		    	deletePet(id, request, response);
 		    	return;
 		}
-
 		    dao.updatePet(pet);
 		    response.sendRedirect(request.getContextPath() + "/");
 	}
@@ -157,10 +160,17 @@ public class Controller extends HttpServlet {
 		    
 		    Pet pet = dao.getPet(id);
 		    request.setAttribute("pet", pet);
-		  } finally {
-		    RequestDispatcher dispatcher = request.getRequestDispatcher("petform.jsp");
-		    dispatcher.forward(request, response);
-		  }
+		} finally {
+		
+			final String action = request.getParameter("action");
+			if (action == null) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("petform.jsp");
+			    dispatcher.forward(request, response);
+			} else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("interestinfo.jsp");
+			    dispatcher.forward(request, response);
+			}
+		}
 	}
 }
 

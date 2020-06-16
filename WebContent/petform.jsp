@@ -44,22 +44,28 @@
 					<label>
 						Shots
 						<select name="shots">
-							<option value="true" ${pet.hasShots() ? 'selected="selected" : ""'}>True</option>
+							<c:set var="selected" value="selected='selected'"/>
+							<c:set var="notSelected" value=""/>
+							<option value="true" ${pet.hasShots() ? selected : notSelected}>True</option>
 							<option value="false">False</option>
 						</select>
 					</label>
 					<label>
 						Kid Friendly
 						<select name="goodWithKids">
-							<option value="true">true</option>
-							<option value="false">false</option>
+							<c:set var="selected" value="selected='selected'"/>
+							<c:set var="notSelected" value=""/>
+							<option value="true" ${pet.isGoodWithKids() ? selected : notSelected}>True</option>
+							<option value="false">False</option>
 						</select>
 					</label>
 					<label>
 						Interest
 						<select name="interest">
-							<option value="true">true</option>
-							<option value="false">false</option>
+							<c:set var="selected" value="selected='selected'"/>
+							<c:set var="notSelected" value=""/>
+							<option value="true" ${pet.hasInterest() ? selected : notSelected}>True</option>
+							<option value="false">False</option>
 						</select>
 					</label>
 					<c:if test="${pet.hasInterest()}">
