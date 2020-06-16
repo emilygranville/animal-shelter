@@ -29,15 +29,15 @@
 				</label>
 				<label>
 					Interest Name
-					<input type="text" name="interestName" value="<c:out value="${pet.interestName}" />" />
+					<input type="text" name="interestName" value="<c:out value="${pet.getInterestName()}" />" />
 				</label>
 				<label>
 					Interest Phone Number
-					<input type="text" name="interestPhoneNum" value="<c:out value="${pet.interestPhoneNum}" />" />
+					<input type="text" name="interestPhoneNum" value="<c:out value="${pet.getInterestPhoneNum()}" />" />
 				</label>
 				<label>
 					Interest Email
-					<input type="text" name="interestEmail" value="<c:out value="${pet.interestEmail}" />" />
+					<input type="text" name="interestEmail" value="<c:out value="${pet.getInterestEmail()}" />" />
 				</label>
 				<input type="hidden" name="id" value="<c:out value="${pet.id}" />" />
 				<input type="submit" value="Enter" name="submit" />

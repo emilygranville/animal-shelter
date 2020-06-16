@@ -161,13 +161,13 @@ public class Controller extends HttpServlet {
 			    System.out.println(deleteId);
 			    
 			    deletePet(deleteId, request, response);
+			    return;
 		}
-		    //dao.updatePet(pet);
 		    response.sendRedirect(request.getContextPath() + "/");
 	}
 		    
 	private void deletePet(final int id, HttpServletRequest request, HttpServletResponse response)
-	  throws SQLException, ServletException, IOException {	
+	  throws SQLException, ServletException, IOException {
 		dao.deletePet(dao.getPet(id));	
 		response.sendRedirect(request.getContextPath() + "/");
 	}
