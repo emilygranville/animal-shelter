@@ -104,12 +104,6 @@ public class Controller extends HttpServlet {
 			    final String interestName = request.getParameter("interestName");
 			    final int interestPhone = Integer.parseInt(request.getParameter("interestPhoneNum"));
 			    final String interestEmail = request.getParameter("interestEmail");
-	
-//			    System.out.println("Adopting a Pet");
-//			    System.out.println(adoptionId);
-//			    System.out.println(interestName);
-//			    System.out.println(interestPhone);
-//			    System.out.println(interestEmail);
 			    
 			    Pet adoptionPet = dao.getPet(adoptionId);
 			    if (!interest) {
@@ -117,7 +111,6 @@ public class Controller extends HttpServlet {
 			    } else {
 				    adoptionPet.adoptionRequest(interestName, interestPhone, interestEmail);
 			    }
-			    dao.updatePetInterest(adoptionPet);
 			    break;
 			case "save":
 			    final int saveId = Integer.parseInt(request.getParameter("id"));
@@ -129,20 +122,8 @@ public class Controller extends HttpServlet {
 			    final boolean shots = Boolean.parseBoolean(request.getParameter("shots"));
 			    final boolean kidFriendly = Boolean.parseBoolean(request.getParameter("goodWithKids"));
 			    final boolean hasInterest = Boolean.parseBoolean(request.getParameter("interest"));
-	
-			    System.out.println("Saving a Pet");
-//			    System.out.println("id: " + saveId);
-			    System.out.println("name: " + name);
-//			    System.out.println("type: " + type);
-//			    System.out.println("age: " + age);
-//			    System.out.println("breed: " + breed);
-//			    System.out.println("description: " + description);
-//			    System.out.println("shots: " + shots);
-//			    System.out.println("kidFriendly: " + kidFriendly);
-//			    System.out.println("hasInterest: " + hasInterest);
 			    
 			    Pet savePet = dao.getPet(saveId);
-			    System.out.println("interestName: " + savePet.getInterestName());
 			    savePet.setName(name);
 			    savePet.setType(type);
 			    savePet.setAge(age);
@@ -160,11 +141,7 @@ public class Controller extends HttpServlet {
 			    
 			    break;
 			case "delete":
-			    final int deleteId = Integer.parseInt(request.getParameter("id"));
-	
-			    System.out.println("Deleting a Pet");
-			    System.out.println(deleteId);
-			    
+			    final int deleteId = Integer.parseInt(request.getParameter("id"));		    
 			    deletePet(deleteId, request, response);
 			    return;
 		}

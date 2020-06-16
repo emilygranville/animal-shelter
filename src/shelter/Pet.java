@@ -142,12 +142,10 @@ public class Pet {
 	}
 	
 	public void adoptionRequest(String name, int phoneNum, String email) {
-		if (!interest) {
-			this.interest = true;
-			this.interestName = name;
-			this.interestPhoneNum = phoneNum;
-			this.interestEmail = email;	
-		}
+		this.interest = true;
+		this.interestName = name;
+		this.interestPhoneNum = phoneNum;
+		this.interestEmail = email;
 	}
 	
 	public void adoptionRemoval() {
