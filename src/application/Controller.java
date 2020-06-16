@@ -127,15 +127,15 @@ public class Controller extends HttpServlet {
 			    final boolean hasInterest = Boolean.parseBoolean(request.getParameter("interest"));
 	
 			    System.out.println("Saving a Pet");
-			    System.out.println(saveId);
-			    System.out.println(name);
-			    System.out.println(type);
-			    System.out.println(age);
-			    System.out.println(breed);
-			    System.out.println(description);
-			    System.out.println(shots);
-			    System.out.println(kidFriendly);
-			    System.out.println(hasInterest);
+			    System.out.println("id: " + saveId);
+			    System.out.println("name: " + name);
+			    System.out.println("type: " + type);
+			    System.out.println("age: " + age);
+			    System.out.println("breed: " + breed);
+			    System.out.println("description: " + description);
+			    System.out.println("shots: " + shots);
+			    System.out.println("kidFriendly: " + kidFriendly);
+			    System.out.println("hasInterest: " + hasInterest);
 			    
 			    Pet savePet = dao.getPet(saveId);
 			    savePet.setName(name);

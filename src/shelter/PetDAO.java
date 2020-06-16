@@ -187,6 +187,7 @@ public class PetDAO {
 	    pstmt.setBoolean(6, pet.hasShots());
 	    pstmt.setBoolean(7, pet.isGoodWithKids());
 	    pstmt.setBoolean(8, pet.hasInterest());
+	    pstmt.setInt(9, pet.getId());
 	    int affected = pstmt.executeUpdate();
 	    
 	    pstmt.close();
@@ -206,6 +207,7 @@ public class PetDAO {
 	    pstmt.setString(2, pet.getInterestName());
 	    pstmt.setInt(3, pet.getInterestPhoneNum());
 	    pstmt.setString(4, pet.getInterestEmail());
+	    pstmt.setInt(5, pet.getId());
 	    int affected = pstmt.executeUpdate();
 	    
 	    pstmt.close();
