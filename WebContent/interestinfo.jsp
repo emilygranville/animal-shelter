@@ -20,8 +20,10 @@
 				<label>
 					Interest
 					<select name="interest">
-						<option value="true">true</option>
-						<option value="false">false</option>
+						<c:set var="selected" value="selected='selected'"/>
+						<c:set var="notSelected" value=""/>
+						<option value="true" ${pet.hasInterest() ? selected : notSelected}>True</option>
+						<option value="false">False</option>
 					</select>
 				</label>
 				<label>
@@ -36,7 +38,8 @@
 					Interest Email
 					<input type="text" name="interestEmail" value="<c:out value="${pet.interestEmail}" />" />
 				</label>
-				<input type="submit" value="Save" name="submit" />
+				<input type="hidden" name="id" value="<c:out value="${pet.id}" />" />
+				<input type="submit" value="Enter" name="submit" />
 			</form>
 		</div>
 	</body>

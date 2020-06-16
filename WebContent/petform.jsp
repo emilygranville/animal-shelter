@@ -114,38 +114,24 @@
 					<label>
 						Shots
 						<select name="shots">
-							<option value="true">true</option>
-							<option value="false">false</option>
+							<option value="true">True</option>
+							<option value="false">False</option>
 						</select>
 					</label>
 					<label>
 						Kid Friendly
 						<select name="goodWithKids">
-							<option value="true">true</option>
-							<option value="false">false</option>
+							<option value="true">True</option>
+							<option value="false">False</option>
 						</select>
 					</label>
 					<label>
-						Interest
-						<select name="interest">
-							<option value="true">true</option>
-							<option value="false">false</option>
-						</select>
+					Interest
+					<select name="interest">
+						<option value="true">True</option>
+						<option value="false">False</option>
+					</select>
 					</label>
-					<c:if test="${pet.hasInterest()}">
-						<label>
-							Interest Name
-							<input type="text" name="interestName"/>
-						</label>
-						<label>
-							Interest Phone Number
-							<input type="text" name="interestPhoneNum"/>
-						</label>
-						<label>
-							Interest Email
-							<input type="text" name="interestEmail"/>
-						</label>
-					</c:if>
 					<input type="submit" value="Add" name="submit" />
 				</form>
 			</c:if>

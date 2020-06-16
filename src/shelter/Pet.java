@@ -149,4 +149,11 @@ public class Pet {
 			this.interestEmail = email;	
 		}
 	}
+	
+	public void adoptionRemoval() {
+		this.interest = false;
+		this.interestName = null;
+		this.interestPhoneNum = -1;
+		this.interestEmail = null;
+	}
 }

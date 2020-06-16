@@ -97,21 +97,22 @@ public class Controller extends HttpServlet {
 		final String action = request.getParameter("action") != null
 		  ? request.getParameter("action")
 		  : request.getParameter("submit").toLowerCase();
-	  
-		final int id = (request.getParameter("id") == null) ?
-			Integer.parseInt((String) request.getAttribute("id")) :
-			Integer.parseInt(request.getParameter("id").trim());
-			
-		System.out.println("should be id" + Integer.parseInt((String) request.getAttribute("id")));
-			
+		  
+		final int id = Integer.parseInt(request.getParameter("id").trim());
+				
 		Pet pet = dao.getPet(id);
 		switch (action) {
 			case "adoption_request":
-				String interestName = request.getParameter("interestName");
-		    	Integer interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum"));
-		    	String interestEmail = request.getParameter("interestEmail");
-		    	pet.adoptionRequest(interestName, interestPhoneNum, interestEmail);
-		    	break;
+//				boolean interest = Boolean.parseBoolean(request.getParameter("interest"));
+//				if (interest) {
+//					String interestName = request.getParameter("interestName");
+//			    	Integer interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum"));
+//			    	String interestEmail = request.getParameter("interestEmail");
+//			    	pet.adoptionRequest(interestName, interestPhoneNum, interestEmail);
+//				} else {
+//					pet.adoptionRemoval();
+//				}
+//		    	break;
 		    case "save":
 		    	String name = request.getParameter("name");
 				String type = request.getParameter("type");
@@ -121,9 +122,9 @@ public class Controller extends HttpServlet {
 				boolean shots = Boolean.parseBoolean(request.getParameter("shots"));
 				boolean good_with_kids = Boolean.parseBoolean(request.getParameter("goodWithKids"));
 				boolean interest = Boolean.parseBoolean(request.getParameter("interest"));
-				interestName = request.getParameter("interestName");
-				interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum"));
-				interestEmail = request.getParameter("interestEmail");
+				String interestName = request.getParameter("interestName");
+				Integer interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum"));
+				String interestEmail = request.getParameter("interestEmail");
 								
 				pet.setName(name);
 				pet.setType(type);
@@ -135,10 +136,21 @@ public class Controller extends HttpServlet {
 				pet.setInterest(interest);
 				
 				if (interestName != null) pet.setInterestName(interestName);
-				if (interestPhoneNum != null) pet.setInterestPhoneNum(interestPhoneNum);
+				if (interestPhoneNum != null) pet.setInterestPhoneNum(interestPhoneNum.intValue());
 				if (interestEmail != null) pet.setInterestEmail(interestEmail);
 		      
 				break;
+		    case "enter":
+			    interest = Boolean.parseBoolean(request.getParameter("interest"));
+				if (interest) {
+					interestName = request.getParameter("interestName");
+			    	interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum").trim());
+			    	interestEmail = request.getParameter("interestEmail");
+			    	pet.adoptionRequest(interestName, interestPhoneNum.intValue(), interestEmail);
+				} else {
+					pet.adoptionRemoval();
+				}
+		    	break;
 		    case "delete":
 		    	deletePet(id, request, response);
 		    	return;
