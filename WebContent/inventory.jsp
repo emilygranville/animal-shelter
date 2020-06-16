@@ -40,12 +40,12 @@
 		            <td><c:out value="${pet.goodWithKids}" /></td>
 		            <td><c:out value="${pet.hasInterest()}" /></td>
 		            <td>
-        				<a href="${pageContext.request.contextPath}/edit?action=adoption_request&id=
-							<c:out value="${pet.id}" />">Update Interest
-						</a>
-       					<a href="${pageContext.request.contextPath}/edit?id=
-	  						<c:out value="${pet.id}" />">Edit
-						</a>
+        				<a href="${pageContext.request.contextPath}/edit?action=adoption_request&id=${pet.id}">
+					          Update Interest
+					    </a>
+					       <a href="${pageContext.request.contextPath}/edit?id=${pet.id}">
+					         Edit
+					    </a>
      				</td>
 				</tr>
 			</c:forEach>

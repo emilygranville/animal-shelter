@@ -68,20 +68,6 @@
 							<option value="false">False</option>
 						</select>
 					</label>
-					<c:if test="${pet.hasInterest()}">
-						<label>
-							Interest Name
-							<input type="text" name="interestName" value="<c:out value="${pet.interestName}" />" />
-						</label>
-						<label>
-							Interest Phone Number
-							<input type="text" name="interestPhoneNum" value="<c:out value="${pet.interestPhoneNum}" />" />
-						</label>
-						<label>
-							Interest Email
-							<input type="text" name="interestEmail" value="<c:out value="${pet.interestEmail}" />" />
-						</label>
-					</c:if>
 					<input type="submit" value="Save" name="submit" />
 					<input type="submit" value="Delete" name="submit" />
 				</form>

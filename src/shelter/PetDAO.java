@@ -174,9 +174,8 @@ public class PetDAO {
 	
 	public boolean updatePet(Pet pet) throws SQLException {
 		final String sql = "UPDATE pets SET name = ?, type = ?, age = ?, breed = ?, " +
-		  "description = ?, shots = ?, good_with_kids = ?, interest = ?, interest_name = ?, " +
-		  "interest_phone_num = ?, interest_email_address = ? " +
-		  "WHERE book_id = ?";
+		  "description = ?, shots = ?, good_with_kids = ?, interest = ? " +
+		  "WHERE pet_id = ?";
 		
 		Connection conn = getConnection();
 	    PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -188,9 +187,25 @@ public class PetDAO {
 	    pstmt.setBoolean(6, pet.hasShots());
 	    pstmt.setBoolean(7, pet.isGoodWithKids());
 	    pstmt.setBoolean(8, pet.hasInterest());
-	    pstmt.setString(9, pet.getInterestName());
-	    pstmt.setInt(10, pet.getInterestPhoneNum());
-	    pstmt.setString(11, pet.getInterestEmail());
+	    int affected = pstmt.executeUpdate();
+	    
+	    pstmt.close();
+	    conn.close();
+	    
+	    return affected == 1;
+	}
+	
+	public boolean updatePetInterest(Pet pet) throws SQLException {
+		final String sql = "UPDATE pets SET interest = ?, interest_name = ?, " +
+		  "interest_phone_num = ?, interest_email_address = ? " +
+		  "WHERE pet_id = ?";
+		
+		Connection conn = getConnection();
+	    PreparedStatement pstmt = conn.prepareStatement(sql);
+	    pstmt.setBoolean(1, pet.hasInterest());
+	    pstmt.setString(2, pet.getInterestName());
+	    pstmt.setInt(3, pet.getInterestPhoneNum());
+	    pstmt.setString(4, pet.getInterestEmail());
 	    int affected = pstmt.executeUpdate();
 	    
 	    pstmt.close();

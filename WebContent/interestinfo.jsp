@@ -17,6 +17,7 @@
 	    </div>
 		<div>
 			<form action="update" method="post">
+				<input type="hidden" name="subaction" value="adoption_request" />
 				<label>
 					Interest
 					<select name="interest">

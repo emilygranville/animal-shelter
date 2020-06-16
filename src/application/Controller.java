@@ -94,68 +94,75 @@ public class Controller extends HttpServlet {
 	private void updatePet(HttpServletRequest request, HttpServletResponse response)
 	  throws SQLException, ServletException, IOException {
 		
-		final String action = request.getParameter("action") != null
-		  ? request.getParameter("action")
-		  : request.getParameter("submit").toLowerCase();
-		  
-		final int id = Integer.parseInt(request.getParameter("id").trim());
-				
-		Pet pet = dao.getPet(id);
+		final String action = request.getParameter("subaction") != null ? request.getParameter("subaction")
+		: request.getParameter("submit").toLowerCase();
+		
 		switch (action) {
 			case "adoption_request":
-//				boolean interest = Boolean.parseBoolean(request.getParameter("interest"));
-//				if (interest) {
-//					String interestName = request.getParameter("interestName");
-//			    	Integer interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum"));
-//			    	String interestEmail = request.getParameter("interestEmail");
-//			    	pet.adoptionRequest(interestName, interestPhoneNum, interestEmail);
-//				} else {
-//					pet.adoptionRemoval();
-//				}
-//		    	break;
-		    case "save":
-		    	String name = request.getParameter("name");
-				String type = request.getParameter("type");
-				int age = Integer.parseInt(request.getParameter("age"));
-				String breed = request.getParameter("breed");
-				String description = request.getParameter("description");
-				boolean shots = Boolean.parseBoolean(request.getParameter("shots"));
-				boolean good_with_kids = Boolean.parseBoolean(request.getParameter("goodWithKids"));
-				boolean interest = Boolean.parseBoolean(request.getParameter("interest"));
-				String interestName = request.getParameter("interestName");
-				Integer interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum"));
-				String interestEmail = request.getParameter("interestEmail");
-								
-				pet.setName(name);
-				pet.setType(type);
-				pet.setAge(age);
-				pet.setBreed(breed);
-				pet.setDescription(description);
-				pet.setShots(shots);
-				pet.setGoodWithKids(good_with_kids);
-				pet.setInterest(interest);
-				
-				if (interestName != null) pet.setInterestName(interestName);
-				if (interestPhoneNum != null) pet.setInterestPhoneNum(interestPhoneNum.intValue());
-				if (interestEmail != null) pet.setInterestEmail(interestEmail);
-		      
-				break;
-		    case "enter":
-			    interest = Boolean.parseBoolean(request.getParameter("interest"));
-				if (interest) {
-					interestName = request.getParameter("interestName");
-			    	interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum").trim());
-			    	interestEmail = request.getParameter("interestEmail");
-			    	pet.adoptionRequest(interestName, interestPhoneNum.intValue(), interestEmail);
-				} else {
-					pet.adoptionRemoval();
-				}
-		    	break;
-		    case "delete":
-		    	deletePet(id, request, response);
-		    	return;
+			    final int adoptionId = Integer.parseInt(request.getParameter("id"));
+			    final String interestName = request.getParameter("interestName");
+			    final int interestPhone = Integer.parseInt(request.getParameter("interestPhoneNum"));
+			    final String interestEmail = request.getParameter("interestEmail");
+	
+			    System.out.println("Adopting a Pet");
+			    System.out.println(adoptionId);
+			    System.out.println(interestName);
+			    System.out.println(interestPhone);
+			    System.out.println(interestEmail);
+			    
+			    Pet adoptionPet = dao.getPet(adoptionId);
+			    adoptionPet.adoptionRequest(interestName, interestPhone, interestEmail);
+			    dao.updatePetInterest(adoptionPet);
+			    
+			    break;
+			case "save":
+			    final int saveId = Integer.parseInt(request.getParameter("id"));
+			    final String name = request.getParameter("name");
+			    final String type = request.getParameter("type");
+			    final int age = Integer.parseInt(request.getParameter("age"));
+			    final String breed = request.getParameter("breed");
+			    final String description = request.getParameter("description");
+			    final boolean shots = Boolean.parseBoolean(request.getParameter("shots"));
+			    final boolean kidFriendly = Boolean.parseBoolean(request.getParameter("goodWithKids"));
+			    final boolean hasInterest = Boolean.parseBoolean(request.getParameter("interest"));
+	
+			    System.out.println("Saving a Pet");
+			    System.out.println(saveId);
+			    System.out.println(name);
+			    System.out.println(type);
+			    System.out.println(age);
+			    System.out.println(breed);
+			    System.out.println(description);
+			    System.out.println(shots);
+			    System.out.println(kidFriendly);
+			    System.out.println(hasInterest);
+			    
+			    Pet savePet = dao.getPet(saveId);
+			    savePet.setName(name);
+			    savePet.setType(type);
+			    savePet.setAge(age);
+			    savePet.setBreed(breed);
+			    savePet.setDescription(description);
+			    savePet.setShots(shots);
+			    savePet.setGoodWithKids(kidFriendly);
+			    savePet.setInterest(hasInterest);
+			    
+			    dao.updatePet(savePet);
+			    if (!hasInterest) {
+			    	savePet.adoptionRemoval();
+			    	dao.updatePetInterest(savePet);
+			    }
+			    
+			    break;
+			case "delete":
+			    final int deleteId = Integer.parseInt(request.getParameter("id"));
+	
+			    System.out.println("Deleting a Pet");
+			    System.out.println(deleteId);
+			    
+			    deletePet(deleteId, request, response);
 		}
-		    dao.updatePet(pet);
+		    //dao.updatePet(pet);
 		    response.sendRedirect(request.getContextPath() + "/");
 	}
 		    
