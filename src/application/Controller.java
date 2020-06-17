@@ -64,20 +64,7 @@ public class Controller extends HttpServlet {
 	    boolean shots = Boolean.parseBoolean(request.getParameter("shots"));
 	    boolean goodWithKids = Boolean.parseBoolean(request.getParameter("goodWithKids"));
 	    boolean interest = Boolean.parseBoolean(request.getParameter("interest"));
-	    if (interest) {
-	    	String interestName = request.getParameter("interestName");
-		    Integer interestPhoneNum = Integer.parseInt(request.getParameter("interestPhoneNum").trim());
-		    String interestEmail = request.getParameter("interestEmail");
-		  	
-		    if (interestName == null || interestPhoneNum == null || interestEmail == null) {
-		    	dao.insertPet(name, type, age, breed, description, shots, goodWithKids, interest);
-		    } else {
-		    	dao.insertPet(name, type, age, breed, description, shots, goodWithKids, interest, 
-		    	  interestName, interestPhoneNum.intValue(), interestEmail);
-		    }
-	    } else {
-	    	dao.insertPet(name, type, age, breed, description, shots, goodWithKids, interest);
-	    }
+	    dao.insertPet(name, type, age, breed, description, shots, goodWithKids, interest);
 	    
 	    response.sendRedirect(request.getContextPath() + "/");
 	}
@@ -102,7 +89,7 @@ public class Controller extends HttpServlet {
 			    final int adoptionId = Integer.parseInt(request.getParameter("id"));
 			    final boolean interest = Boolean.parseBoolean(request.getParameter("interest"));
 			    final String interestName = request.getParameter("interestName");
-			    final int interestPhone = Integer.parseInt(request.getParameter("interestPhoneNum"));
+			    final long interestPhone = Long.parseLong(request.getParameter("interestPhoneNum"));
 			    final String interestEmail = request.getParameter("interestEmail");
 			    
 			    Pet adoptionPet = dao.getPet(adoptionId);

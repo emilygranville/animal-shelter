@@ -114,6 +114,7 @@ h2 {
   text-align: center;
   text-decoration: none;
   width: 30%;
+  margin: 5px;
 }
 
 .button:active {

@@ -11,7 +11,7 @@ public class Pet {
 	private boolean goodWithKids;
 	private boolean interest;
 	private String interestName;
-	private int interestPhoneNum;
+	private long interestPhoneNum;
 	private String interestEmail;
 		
 	public Pet(int id, String name, String type, int age, String breed, String description, boolean shots, boolean goodWithKids) {
@@ -32,7 +32,7 @@ public class Pet {
 	}
 	
 	public Pet(int id, String name, String type, int age, String breed, String description, boolean shots, boolean goodWithKids, 
-	  boolean interest, String interestName, int interestPhoneNum, String interestEmail) {
+	  boolean interest, String interestName, long interestPhoneNum, String interestEmail) {
 		super();
 		
 		this.id = id;
@@ -81,7 +81,7 @@ public class Pet {
 		this.interestName = interestName;
 	}
 
-	public void setInterestPhoneNum(int interestPhoneNum) {
+	public void setInterestPhoneNum(long interestPhoneNum) {
 		this.interestPhoneNum = interestPhoneNum;
 	}
 
@@ -133,7 +133,7 @@ public class Pet {
 		return interestName;
 	}
 
-	public int getInterestPhoneNum() {
+	public long getInterestPhoneNum() {
 		return interestPhoneNum;
 	}
 
@@ -141,7 +141,7 @@ public class Pet {
 		return interestEmail;
 	}
 	
-	public void adoptionRequest(String name, int phoneNum, String email) {
+	public void adoptionRequest(String name, long phoneNum, String email) {
 		this.interest = true;
 		this.interestName = name;
 		this.interestPhoneNum = phoneNum;
