@@ -6,13 +6,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Animal Shelter</title>
+		<style type="text/css">
+	      <%@ include file="css/css.css" %>
+	    </style>
 	</head>
 	<body>
 		<div>
 			<h1>Inventory Management</h1>
-			<div>
-				<a href="${pageContext.request.contextPath}/">VIEW ALL</a>
-				<a href="${pageContext.request.contextPath}/add">ADD A PET</a> 
+			<div class="header">
+				<a href="${pageContext.request.contextPath}/" class="header-button">VIEW ALL</a>
+				<a href="${pageContext.request.contextPath}/add" class="header-button">ADD A PET</a> 
 			</div>
 	    </div>
     	<div>
@@ -68,8 +71,10 @@
 							<option value="false">False</option>
 						</select>
 					</label>
-					<input type="submit" value="Save" name="submit" />
-					<input type="submit" value="Delete" name="submit" />
+					<div class="form-actions">
+						<input type="submit" value="Save" name="submit" />
+						<input type="submit" value="Delete" name="submit" />
+					</div>
 				</form>
       		</c:if>
 			<c:if test="${pet == null}">
