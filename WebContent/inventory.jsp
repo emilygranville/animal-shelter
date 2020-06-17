@@ -45,7 +45,7 @@
 	        				<a href="${pageContext.request.contextPath}/edit?action=adoption_request&id=${pet.id}" class="button">
 						          Update Interest
 						    </a>
-						       <a href="${pageContext.request.contextPath}/edit?id=${pet.id}" class="button">
+						    <a href="${pageContext.request.contextPath}/edit?id=${pet.id}" class="button">
 						         Edit
 						    </a>
 	     				</td>
