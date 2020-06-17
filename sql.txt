@@ -13,10 +13,10 @@ CREATE TABLE IF NOT EXISTS `pets` (
 	`image` longblob,
 	`interest` BOOLEAN NOT NULL,
 	`interest_name` varchar(100),
-	`interest_phone_num` int(12),
+	`interest_phone_num` bigint(12),
 	`interest_email_address` varchar(100), 
 	PRIMARY KEY(`pet_id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1; 	
 
 
-INSERT INTO `pets` (`name`, `type`, `age`, `breed`, `description`, `shots`, `good_with_kids`, `interest`) VALUES ("MewMew", "cat", 3, "bombay", "adorable", true, true, false);
+INSERT INTO `pets` (`name`, `type`, `age`, `breed`, `description`, `shots`, `good_with_kids`, `interest`) VALUES ("MewMew", "Cat", 3, "Bombay", "adorable", true, true, false);

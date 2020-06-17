@@ -98,6 +98,7 @@ public class Controller extends HttpServlet {
 			    } else {
 				    adoptionPet.adoptionRequest(interestName, interestPhone, interestEmail);
 			    }
+			    dao.updatePetInterest(adoptionPet);
 			    break;
 			case "save":
 			    final int saveId = Integer.parseInt(request.getParameter("id"));
