@@ -25,7 +25,7 @@ table {
 }
 
 table tr:first-child {
-  background-color: lightblue;
+  background-color: #f3a5f3;
 }
 
 table th {
