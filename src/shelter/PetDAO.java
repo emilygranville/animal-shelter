@@ -42,7 +42,7 @@ public class PetDAO {
 	        boolean good_with_kids = rs.getBoolean("good_with_kids");
 	        boolean interest = rs.getBoolean("interest");
 	        String interestName = rs.getString("interest_name");
-	        long interestPhoneNum = rs.getInt("interest_phone_num");
+	        long interestPhoneNum = rs.getLong("interest_phone_num");
 	        String interestEmail = rs.getString("interest_email_address");
 	        
 	        pet = new Pet(id, name, type, age, breed, description, shots, good_with_kids, interest,
@@ -75,7 +75,7 @@ public class PetDAO {
 	        boolean good_with_kids = rs.getBoolean("good_with_kids");
 	        boolean interest = rs.getBoolean("interest");
 	        String interestName = rs.getString("interest_name");
-	        long interestPhoneNum = rs.getInt("interest_phone_num");
+	        long interestPhoneNum = rs.getLong("interest_phone_num");
 	        String interestEmail = rs.getString("interest_email_address");
 	        
 	        pets.add(new Pet(id, name, type, age, breed, description, shots, good_with_kids, interest,
